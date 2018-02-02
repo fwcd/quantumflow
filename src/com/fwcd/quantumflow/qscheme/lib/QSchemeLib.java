@@ -1,7 +1,5 @@
-package com.fredrikw.quantumflow.qscheme.lib;
+package com.fwcd.quantumflow.qscheme.lib;
 
-import com.fredrikw.quantumflow.qscheme.QSUtils;
-import com.fredrikw.quantumflow.qscheme.QSchemeConsole;
 import com.fwcd.fructose.quantum.gates.binary.CNOTGate;
 import com.fwcd.fructose.quantum.gates.binary.SqrtSwapGate;
 import com.fwcd.fructose.quantum.gates.binary.SwapGate;
@@ -13,6 +11,8 @@ import com.fwcd.fructose.quantum.gates.unary.PauliYGate;
 import com.fwcd.fructose.quantum.gates.unary.PauliZGate;
 import com.fwcd.fructose.quantum.gates.unary.SqrtNOTGate;
 import com.fwcd.fructose.quantum.simulator.SimulatedSuperpos;
+import com.fwcd.quantumflow.qscheme.QSUtils;
+import com.fwcd.quantumflow.qscheme.QSchemeConsole;
 
 /**
  * The "standard-library" of QScheme that extends the functions

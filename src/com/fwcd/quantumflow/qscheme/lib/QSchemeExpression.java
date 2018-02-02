@@ -1,4 +1,4 @@
-package com.fredrikw.quantumflow.qscheme.lib;
+package com.fwcd.quantumflow.qscheme.lib;
 
 public interface QSchemeExpression {
 	Class<?>[] getImports();

@@ -1,4 +1,4 @@
-package com.fredrikw.quantumflow.circuitbuilder;
+package com.fwcd.quantumflow.circuitbuilder;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

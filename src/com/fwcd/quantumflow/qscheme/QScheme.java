@@ -1,4 +1,4 @@
-package com.fredrikw.quantumflow.qscheme;
+package com.fwcd.quantumflow.qscheme;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import com.fredrikw.quantumflow.qscheme.lib.QSchemeExpression;
-import com.fredrikw.quantumflow.qscheme.lib.QSchemeLib;
+import com.fwcd.quantumflow.qscheme.lib.QSchemeExpression;
+import com.fwcd.quantumflow.qscheme.lib.QSchemeLib;
 
 import jscheme.JScheme;
 

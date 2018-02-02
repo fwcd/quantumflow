@@ -1,12 +1,12 @@
-package com.fredrikw.quantumflow.core;
+package com.fwcd.quantumflow.core;
 
 import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 
-import com.fredrikw.quantumflow.circuitbuilder.CircuitBuilderTab;
-import com.fredrikw.quantumflow.qschemeeditor.QSchemeEditorTab;
+import com.fwcd.quantumflow.circuitbuilder.CircuitBuilderTab;
+import com.fwcd.quantumflow.qschemeeditor.QSchemeEditorTab;
 
 public class QuantumFlowApp {
 	private final JFrame view;

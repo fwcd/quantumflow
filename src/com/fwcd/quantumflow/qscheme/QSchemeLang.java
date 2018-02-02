@@ -1,12 +1,12 @@
-package com.fredrikw.quantumflow.qscheme;
+package com.fwcd.quantumflow.qscheme;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import com.fredrikw.quantumflow.qscheme.lib.QSchemeExpression;
-import com.fredrikw.quantumflow.qscheme.lib.QSchemeLib;
 import com.fwcd.breeze.languages.ProgrammingLang;
+import com.fwcd.quantumflow.qscheme.lib.QSchemeExpression;
+import com.fwcd.quantumflow.qscheme.lib.QSchemeLib;
 
 public class QSchemeLang implements ProgrammingLang {
 	private final QSchemeLib lib = new QSchemeLib();

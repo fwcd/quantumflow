@@ -1,4 +1,4 @@
-package com.fredrikw.quantumflow.circuitbuilder;
+package com.fwcd.quantumflow.circuitbuilder;
 
 import java.awt.Dimension;
 import java.awt.Graphics2D;

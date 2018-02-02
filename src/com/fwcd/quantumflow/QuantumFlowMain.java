@@ -1,9 +1,9 @@
-package com.fredrikw.quantumflow;
+package com.fwcd.quantumflow;
 
-import com.fredrikw.quantumflow.core.QuantumFlowApp;
 import com.fwcd.fructose.quantum.core.QubitSuperpos;
 import com.fwcd.fructose.quantum.gates.binary.SqrtSwapGate;
 import com.fwcd.fructose.quantum.simulator.SimulatedSuperpos;
+import com.fwcd.quantumflow.core.QuantumFlowApp;
 
 public class QuantumFlowMain {
 	private static final boolean TEST_MODE = false;

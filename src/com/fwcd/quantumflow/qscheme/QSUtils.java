@@ -1,4 +1,4 @@
-package com.fredrikw.quantumflow.qscheme;
+package com.fwcd.quantumflow.qscheme;
 
 import java.util.Arrays;
 

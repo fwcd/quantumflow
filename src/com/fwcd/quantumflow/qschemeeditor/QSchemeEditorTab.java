@@ -1,16 +1,16 @@
-package com.fredrikw.quantumflow.qschemeeditor;
+package com.fwcd.quantumflow.qschemeeditor;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JSplitPane;
 import javax.swing.KeyStroke;
 
-import com.fredrikw.quantumflow.qscheme.QSchemeConsole;
-import com.fredrikw.quantumflow.qscheme.QSchemeLang;
 import com.fwcd.breeze.core.BreezeComponent;
 import com.fwcd.breeze.theme.LightTheme;
 import com.fwcd.fructose.io.ResourceFile;
 import com.fwcd.fructose.swing.Viewable;
+import com.fwcd.quantumflow.qscheme.QSchemeConsole;
+import com.fwcd.quantumflow.qscheme.QSchemeLang;
 
 public class QSchemeEditorTab implements Viewable {
 	private final JSplitPane view;
