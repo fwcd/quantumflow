@@ -1,5 +1,5 @@
 # QuantumFlow
-A quantum computer simulation UI featuring a visual quantum circuit builder and a Lisp-based [scripting language](https://en.wikipedia.org/wiki/Domain-specific_language).
+A quantum computer simulation UI featuring a visual quantum circuit builder and a Lisp-based scripting language.
 
 ## Dependencies
 * JScheme 7.2
