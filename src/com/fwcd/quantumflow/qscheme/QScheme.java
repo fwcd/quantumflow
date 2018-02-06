@@ -20,10 +20,6 @@ public class QScheme extends JScheme {
 		Set<String> imports = new HashSet<>();
 		List<String> definitions = new ArrayList<>();
 		
-//		eval("(import \"com.fredrikw.quantumflow.qscheme.QSchemeConsole\")");
-//		eval("(define (print s) (QSchemeConsole.print s))");
-//		eval("(define (println s) (QSchemeConsole.println s))");
-		
 		for (QSchemeExpression func : lib.getFunctions()) {
 			imports.addAll(Arrays.stream(func.getImports())
 					.map(clazz -> "(import \"" + clazz.getName() + "\")")
