@@ -121,8 +121,8 @@ public class VisualCircuit implements Viewable, Rendereable {
 		
 		selectedGate.ifPresent(gate -> {
 			Pair<Integer, QubitFlowLine> indexedLine = nearestLine();
-			int lineIndex = indexedLine.getA();
-			QubitFlowLine line = indexedLine.getB();
+			int lineIndex = indexedLine.getLeft();
+			QubitFlowLine line = indexedLine.getRight();
 			
 			if (line != null) {
 				model.addOperation(gate.getGate(), lineIndex);

@@ -13,7 +13,7 @@ repositories {
 dependencies {
     implementation 'com.github.fwcd:Fructose:bc214640d74d7455dfacbb533f7c6cb14598ca18'
     implementation 'com.github.fwcd:Palm:b90dbd1471bc8ef4e0f0126c6ac5f4fa674bf0f2'
-    implementation 'com.github.fwcd:QuantumCore:6853eb02e4c4b897b0a2bc8f79685459c8d85826'
+    implementation 'com.github.fwcd:QuantumCore:07961518425eb843832e4c197ba99d768e920a0e'
     implementation 'com.google.guava:guava:23.0'
     testImplementation 'junit:junit:4.12'
 }
