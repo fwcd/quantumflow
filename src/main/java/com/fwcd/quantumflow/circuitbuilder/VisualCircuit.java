@@ -16,7 +16,7 @@ import javax.swing.JPanel;
 import com.fwcd.fructose.ListenerList;
 import com.fwcd.fructose.Pair;
 import com.fwcd.fructose.geometry.Vector2D;
-import com.fwcd.fructose.quantum.simulator.SimulatedQuantumCircuit;
+import com.fwcd.quantum.simulator.SimulatedQuantumCircuit;
 import com.fwcd.fructose.swing.RenderPanel;
 import com.fwcd.fructose.swing.Rendereable;
 import com.fwcd.fructose.swing.Viewable;

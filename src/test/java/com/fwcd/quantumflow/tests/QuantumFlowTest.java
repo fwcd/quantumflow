@@ -1,6 +1,6 @@
-import com.fwcd.fructose.quantum.core.QubitSuperpos;
-import com.fwcd.fructose.quantum.gates.binary.SqrtSwapGate;
-import com.fwcd.fructose.quantum.simulator.SimulatedSuperpos;
+import com.fwcd.quantum.core.QubitSuperpos;
+import com.fwcd.quantum.gates.binary.SqrtSwapGate;
+import com.fwcd.quantum.simulator.SimulatedSuperpos;
 
 import org.junit.Test;
 

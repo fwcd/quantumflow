@@ -13,17 +13,17 @@ import javax.swing.JPanel;
 import javax.swing.JToolBar;
 
 import com.fwcd.fructose.geometry.Vector2D;
-import com.fwcd.fructose.quantum.gates.QuantumGate;
-import com.fwcd.fructose.quantum.gates.binary.CNOTGate;
-import com.fwcd.fructose.quantum.gates.binary.SqrtSwapGate;
-import com.fwcd.fructose.quantum.gates.binary.SwapGate;
-import com.fwcd.fructose.quantum.gates.ternary.CCNOTGate;
-import com.fwcd.fructose.quantum.gates.ternary.CSwapGate;
-import com.fwcd.fructose.quantum.gates.unary.HadamardGate;
-import com.fwcd.fructose.quantum.gates.unary.PauliXGate;
-import com.fwcd.fructose.quantum.gates.unary.PauliYGate;
-import com.fwcd.fructose.quantum.gates.unary.PauliZGate;
-import com.fwcd.fructose.quantum.gates.unary.SqrtNOTGate;
+import com.fwcd.quantum.gates.QuantumGate;
+import com.fwcd.quantum.gates.binary.CNOTGate;
+import com.fwcd.quantum.gates.binary.SqrtSwapGate;
+import com.fwcd.quantum.gates.binary.SwapGate;
+import com.fwcd.quantum.gates.ternary.CCNOTGate;
+import com.fwcd.quantum.gates.ternary.CSwapGate;
+import com.fwcd.quantum.gates.unary.HadamardGate;
+import com.fwcd.quantum.gates.unary.PauliXGate;
+import com.fwcd.quantum.gates.unary.PauliYGate;
+import com.fwcd.quantum.gates.unary.PauliZGate;
+import com.fwcd.quantum.gates.unary.SqrtNOTGate;
 import com.fwcd.fructose.swing.Viewable;
 
 public class CircuitToolBar implements Viewable {

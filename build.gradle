@@ -1,27 +1,20 @@
 plugins {
-    // Apply the java plugin to add support for Java
     id 'java'
-
-    // Apply the application plugin to add support for building an application
     id 'application'
 }
 
-// Define the main class for the application
 mainClassName = 'com.fwcd.quantumflow.QuantumFlowMain'
 
-dependencies {
-    // This dependency is found on compile classpath of this component and consumers.
-    compile 'com.google.guava:guava:23.0'
-
-    compile fileTree(dir: 'lib', include: ['*.jar'])
-
-    // Use JUnit test framework
-    testCompile 'junit:junit:4.12'
+repositories {
+    jcenter()
+    maven { url 'https://jitpack.io' }
 }
 
-// In this section you declare where to find the dependencies of your project
-repositories {
-    // Use jcenter for resolving your dependencies.
-    // You can declare any Maven/Ivy/file repository here.
-    jcenter()
+dependencies {
+    implementation 'com.github.fwcd:Fructose:bc214640d74d7455dfacbb533f7c6cb14598ca18'
+    implementation 'com.github.fwcd:Palm:b90dbd1471bc8ef4e0f0126c6ac5f4fa674bf0f2'
+    implementation 'com.github.fwcd:QuantumCore:6853eb02e4c4b897b0a2bc8f79685459c8d85826'
+    implementation 'com.google.guava:guava:23.0'
+    implementation fileTree(dir: 'lib', include: ['*.jar'])
+    testImplementation 'junit:junit:4.12'
 }

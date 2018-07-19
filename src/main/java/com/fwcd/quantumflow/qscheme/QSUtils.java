@@ -2,7 +2,7 @@ package com.fwcd.quantumflow.qscheme;
 
 import java.util.Arrays;
 
-import com.fwcd.fructose.quantum.core.QubitState;
+import com.fwcd.quantum.core.QubitState;
 
 import jsint.Pair;
 
