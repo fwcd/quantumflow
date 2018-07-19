@@ -10,14 +10,14 @@ import javax.swing.JTextPane;
 
 import com.fwcd.fructose.swing.Viewable;
 
-public class CircuitBuilderTab implements Viewable {
+public class CircuitBuilderView implements Viewable {
 	private final JPanel view;
 	
 	private final CircuitToolBar toolBar;
 	private final VisualCircuit circuitBuilder;
 	private final JTextPane output;
 	
-	public CircuitBuilderTab() {
+	public CircuitBuilderView() {
 		view = new JPanel();
 		view.setLayout(new BorderLayout());
 		

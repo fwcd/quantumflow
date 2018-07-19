@@ -15,6 +15,5 @@ dependencies {
     implementation 'com.github.fwcd:Palm:b90dbd1471bc8ef4e0f0126c6ac5f4fa674bf0f2'
     implementation 'com.github.fwcd:QuantumCore:6853eb02e4c4b897b0a2bc8f79685459c8d85826'
     implementation 'com.google.guava:guava:23.0'
-    implementation fileTree(dir: 'lib', include: ['*.jar'])
     testImplementation 'junit:junit:4.12'
 }

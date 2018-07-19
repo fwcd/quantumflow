@@ -1,3 +1,5 @@
+package com.fwcd.quantumflow.tests;
+
 import com.fwcd.quantum.core.QubitSuperpos;
 import com.fwcd.quantum.gates.binary.SqrtSwapGate;
 import com.fwcd.quantum.simulator.SimulatedSuperpos;
