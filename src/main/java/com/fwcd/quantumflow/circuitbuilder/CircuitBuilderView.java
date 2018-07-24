@@ -14,18 +14,18 @@ public class CircuitBuilderView implements Viewable {
 	private final JPanel view;
 	
 	private final CircuitToolBar toolBar;
-	private final QuantumCircuitView circuitBuilder;
+	private final QuantumCircuitView circuit;
 	private final JTextPane output;
 	
 	public CircuitBuilderView() {
 		view = new JPanel();
 		view.setLayout(new BorderLayout());
 		
-		circuitBuilder = new QuantumCircuitView();
-		circuitBuilder.addListener(this::onChange);
-		view.add(circuitBuilder.getView(), BorderLayout.CENTER);
+		circuit = new QuantumCircuitView();
+		circuit.addListener(this::onChange);
+		view.add(circuit.getView(), BorderLayout.CENTER);
 		
-		toolBar = new CircuitToolBar(circuitBuilder);
+		toolBar = new CircuitToolBar(circuit);
 		view.add(toolBar.getView(), BorderLayout.SOUTH);
 		
 		output = new JTextPane();
@@ -36,7 +36,7 @@ public class CircuitBuilderView implements Viewable {
 	}
 	
 	private void onChange() {
-		output.setText(circuitBuilder.getModel().compute().toString());
+		output.setText(circuit.getModel().compute().toString());
 		output.repaint();
 	}
 

@@ -27,10 +27,10 @@ public class QuantumCircuitView implements Viewable, Rendereable {
 
 	private final int padding = 20;
 	private final int lineDistance = padding * 4;
-	private final SortedMap<Integer, QubitWire> lines = new TreeMap<>();
+	private final SortedMap<Integer, QubitWireView> lines = new TreeMap<>();
 	
 	private boolean viewSelectedGate = false;
-	private Optional<QuantumGateView> selectedGate = Optional.empty();
+	private Optional<QuantumGateView> floatingGate = Optional.empty();
 	
 	private final ListenerList changeListeners = new ListenerList();
 	
@@ -74,11 +74,11 @@ public class QuantumCircuitView implements Viewable, Rendereable {
 		view.addMouseListener(adapter);
 		view.addMouseMotionListener(adapter);
 		
-		addListener(() -> lines.values().forEach(QubitWire::hideOutput));
+		addListener(() -> lines.values().forEach(QubitWireView::hideOutput));
 	}
 	
 	public void calculateResult() {
-		Iterator<QubitWire> lineIt = lines.values().iterator();
+		Iterator<QubitWireView> lineIt = lines.values().iterator();
 		for (boolean outBit : model.computeResult().getBits()) {
 			lineIt.next().setOutput(outBit);
 		}
@@ -87,18 +87,18 @@ public class QuantumCircuitView implements Viewable, Rendereable {
 	
 	private void onMouseMove(Vector2D pos) {
 		lastMousePos = pos;
-		selectedGate.ifPresent(gate -> gate.moveTo(pos));
+		floatingGate.ifPresent(gate -> gate.setFloatingPos(pos));
 		view.repaint();
 	}
 
-	private Pair<Integer, QubitWire> nearestLine() {
+	private Pair<Integer, QubitWireView> nearestLine() {
 		int minYD = Integer.MAX_VALUE;
-		QubitWire minLine = null;
+		QubitWireView minLine = null;
 		int minI = -1;
 		
 		int i = 0;
 		for (int yPos : lines.keySet()) {
-			QubitWire line = lines.get(yPos);
+			QubitWireView line = lines.get(yPos);
 			
 			int diff = (int) Math.abs(yPos - lastMousePos.getY());
 			
@@ -115,30 +115,37 @@ public class QuantumCircuitView implements Viewable, Rendereable {
 	}
 	
 	private void onMouseClick(Vector2D pos) {
-		for (QubitWire line : lines.values()) {
-			line.onMouseClick(pos);
+		boolean changedInput = false;
+		for (QubitWireView line : lines.values()) {
+			changedInput |= line.onMouseClick(pos);
 		}
 		
-		selectedGate.ifPresent(gate -> {
-			Pair<Integer, QubitWire> indexedLine = nearestLine();
+		floatingGate.ifPresent(gate -> {
+			Pair<Integer, QubitWireView> indexedLine = nearestLine();
 			int lineIndex = indexedLine.getLeft();
-			QubitWire line = indexedLine.getRight();
+			QubitWireView line = indexedLine.getRight();
 			
 			if (line != null) {
-				model.addGate(gate.getGate(), lineIndex);
+				gate.addIndex(lineIndex);
 				line.addGate(gate, offset);
-				offset = offset.add(gate.getSize().getWidth() + 2, 0);
-				selectedGate = Optional.empty();
+				if (!gate.isFloating()) {
+					model.addGate(gate.getModel(), gate.getIndices());
+					offset = offset.add(gate.getSize().getWidth() + 2, 0);
+					floatingGate = Optional.empty();
+					changeListeners.fire();
+				}
 			}
 		});
 		
-		updateInput();
+		if (changedInput) {
+			updateInput();
+		}
 		view.repaint();
 	}
 	
 	private void updateInput() {
 		int i = 0;
-		for (QubitWire line : lines.values()) {
+		for (QubitWireView line : lines.values()) {
 			model.setInputQubit(i, line.getInput());
 			i++;
 		}
@@ -147,7 +154,7 @@ public class QuantumCircuitView implements Viewable, Rendereable {
 
 	public void addQubit() {
 		model.addQubit(false);
-		lines.put(y, new QubitWire(new Vector2D(x, y), new Vector2D(x, y)));
+		lines.put(y, new QubitWireView(new Vector2D(x, y), new Vector2D(x, y)));
 		y += lineDistance;
 		view.repaint();
 		changeListeners.fire();
@@ -166,13 +173,13 @@ public class QuantumCircuitView implements Viewable, Rendereable {
 	public void render(Graphics2D g2d, Dimension canvasSize) {
 		g2d.setStroke(new BasicStroke(2));
 		
-		for (QubitWire line : lines.values()) {
+		for (QubitWireView line : lines.values()) {
 			line.setEnd(new Vector2D(canvasSize.getWidth() - x, line.getEnd().getY()));
 			line.render(g2d, canvasSize);
 		}
 		
 		if (viewSelectedGate) {
-			selectedGate.ifPresent(gate -> gate.render(g2d, canvasSize));
+			floatingGate.ifPresent(gate -> gate.render(g2d, canvasSize));
 		}
 	}
 
@@ -186,7 +193,7 @@ public class QuantumCircuitView implements Viewable, Rendereable {
 	}
 
 	public void select(QuantumGateView gate) {
-		selectedGate = Optional.of(gate);
+		floatingGate = Optional.of(gate);
 		view.repaint();
 	}
 

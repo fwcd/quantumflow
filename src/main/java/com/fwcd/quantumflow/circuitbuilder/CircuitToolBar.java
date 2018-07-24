@@ -57,11 +57,13 @@ public class CircuitToolBar implements Viewable {
 		unaryGates.add(gateButton(builder, new PauliZGate()));
 		unaryGates.add(gateButton(builder, new SqrtNOTGate()));
 		toolBar.add(unaryGates);
+		toolBar.addSeparator();
 
 		JPanel binaryGates = gatePanel("Binary gates");
 		binaryGates.add(gateButton(builder, new CNOTGate()));
 		binaryGates.add(gateButton(builder, new SwapGate()));
 		toolBar.add(binaryGates);
+		toolBar.addSeparator();
 		
 		JPanel ternaryGates = gatePanel("Ternary gates");
 		ternaryGates.add(gateButton(builder, new ToffoliGate()));
@@ -85,10 +87,8 @@ public class CircuitToolBar implements Viewable {
 	}
 
 	private JButton gateButton(QuantumCircuitView builder, QuantumGate gate) {
-		QuantumGateView vGate = new QuantumGateView(gate, new Vector2D(padding, padding), builder.getLineDistance());
-//		JButton button = new DrawGraphicsButton(vGate.getSizePlus(padding * 2, padding * 2), vGate);
 		JButton button = new JButton(gate.getClass().getSimpleName());
-		button.addActionListener(l -> builder.select(vGate));
+		button.addActionListener(l -> builder.select(new QuantumGateView(gate, builder.getLineDistance())));
 		return button;
 	}
 	

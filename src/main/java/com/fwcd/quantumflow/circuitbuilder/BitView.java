@@ -38,10 +38,11 @@ public class BitView implements Rendereable {
 		return showState ? (state ? DrawColor.MAGENTA : DrawColor.BLACK) : DrawColor.GRAY;
 	}
 	
-	public void onMouseClick(Vector2D pos) {
+	public boolean onMouseClick(Vector2D pos) {
 		if (editable && frame.contains(pos)) {
 			state = !state;
-		}
+			return true;
+		} else return false;
 	}
 	
 	@Override

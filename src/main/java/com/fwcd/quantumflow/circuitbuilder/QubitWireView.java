@@ -10,19 +10,19 @@ import com.fwcd.fructose.geometry.Vector2D;
 import com.fwcd.fructose.swing.Rendereable;
 import com.fwcd.fructose.swing.SwingGraphics;
 
-public class QubitWire implements Rendereable {
+public class QubitWireView implements Rendereable {
 	private final BitView inBit;
 	private final BitView outBit;
 	private Vector2D startPos;
 	private Vector2D endPos;
 	
-	private List<QuantumGateView> gates = new ArrayList<>();
+	private final List<QuantumGateView> gates = new ArrayList<>();
 	
-	public QubitWire(Vector2D startPos, Vector2D endPos) {
+	public QubitWireView(Vector2D startPos, Vector2D endPos) {
 		this.startPos = startPos;
 		this.endPos = endPos;
-		inBit = new BitView(true, startPos);
-		outBit = new BitView(false, endPos);
+		inBit = new BitView(/* editable */ true, startPos);
+		outBit = new BitView(/* editable */ false, endPos);
 	}
 
 	@Override
@@ -38,9 +38,10 @@ public class QubitWire implements Rendereable {
 		}
 	}
 
-	public void onMouseClick(Vector2D pos) {
-		inBit.onMouseClick(pos);
-		outBit.onMouseClick(pos);
+	public boolean onMouseClick(Vector2D pos) {
+		if (inBit.onMouseClick(pos)) return true;
+		if (outBit.onMouseClick(pos)) return true;
+		return false;
 	}
 	
 	public Vector2D getEnd() {
@@ -62,7 +63,10 @@ public class QubitWire implements Rendereable {
 	}
 
 	public void addGate(QuantumGateView gate, Vector2D offset) {
-		gates.add(gate.withPos(startPos.add(offset)));
+		gate.placeNextComponentAt(startPos.add(offset));
+		if (!gate.isFloating()) {
+			gates.add(gate);
+		}
 	}
 
 	public boolean getInput() {
