@@ -21,16 +21,16 @@ import com.fwcd.fructose.swing.RenderPanel;
 import com.fwcd.fructose.swing.Rendereable;
 import com.fwcd.fructose.swing.Viewable;
 
-public class VisualCircuit implements Viewable, Rendereable {
+public class QuantumCircuitView implements Viewable, Rendereable {
 	private final JPanel view;
 	private SimulatedQuantumCircuit model = new SimulatedQuantumCircuit();
 
 	private final int padding = 20;
 	private final int lineDistance = padding * 4;
-	private final SortedMap<Integer, QubitFlowLine> lines = new TreeMap<>();
+	private final SortedMap<Integer, QubitWire> lines = new TreeMap<>();
 	
 	private boolean viewSelectedGate = false;
-	private Optional<VisualGate> selectedGate = Optional.empty();
+	private Optional<QuantumGateView> selectedGate = Optional.empty();
 	
 	private final ListenerList changeListeners = new ListenerList();
 	
@@ -40,7 +40,7 @@ public class VisualCircuit implements Viewable, Rendereable {
 	private int x = padding;
 	private int y = padding;
 	
-	public VisualCircuit() {
+	public QuantumCircuitView() {
 		view = new RenderPanel(this);
 		MouseAdapter adapter = new MouseAdapter() {
 			
@@ -74,11 +74,11 @@ public class VisualCircuit implements Viewable, Rendereable {
 		view.addMouseListener(adapter);
 		view.addMouseMotionListener(adapter);
 		
-		addListener(() -> lines.values().forEach(QubitFlowLine::hideOutput));
+		addListener(() -> lines.values().forEach(QubitWire::hideOutput));
 	}
 	
 	public void calculateResult() {
-		Iterator<QubitFlowLine> lineIt = lines.values().iterator();
+		Iterator<QubitWire> lineIt = lines.values().iterator();
 		for (boolean outBit : model.computeResult().getBits()) {
 			lineIt.next().setOutput(outBit);
 		}
@@ -91,14 +91,14 @@ public class VisualCircuit implements Viewable, Rendereable {
 		view.repaint();
 	}
 
-	private Pair<Integer, QubitFlowLine> nearestLine() {
+	private Pair<Integer, QubitWire> nearestLine() {
 		int minYD = Integer.MAX_VALUE;
-		QubitFlowLine minLine = null;
+		QubitWire minLine = null;
 		int minI = -1;
 		
 		int i = 0;
 		for (int yPos : lines.keySet()) {
-			QubitFlowLine line = lines.get(yPos);
+			QubitWire line = lines.get(yPos);
 			
 			int diff = (int) Math.abs(yPos - lastMousePos.getY());
 			
@@ -115,17 +115,17 @@ public class VisualCircuit implements Viewable, Rendereable {
 	}
 	
 	private void onMouseClick(Vector2D pos) {
-		for (QubitFlowLine line : lines.values()) {
+		for (QubitWire line : lines.values()) {
 			line.onMouseClick(pos);
 		}
 		
 		selectedGate.ifPresent(gate -> {
-			Pair<Integer, QubitFlowLine> indexedLine = nearestLine();
+			Pair<Integer, QubitWire> indexedLine = nearestLine();
 			int lineIndex = indexedLine.getLeft();
-			QubitFlowLine line = indexedLine.getRight();
+			QubitWire line = indexedLine.getRight();
 			
 			if (line != null) {
-				model.addOperation(gate.getGate(), lineIndex);
+				model.addGate(gate.getGate(), lineIndex);
 				line.addGate(gate, offset);
 				offset = offset.add(gate.getSize().getWidth() + 2, 0);
 				selectedGate = Optional.empty();
@@ -138,7 +138,7 @@ public class VisualCircuit implements Viewable, Rendereable {
 	
 	private void updateInput() {
 		int i = 0;
-		for (QubitFlowLine line : lines.values()) {
+		for (QubitWire line : lines.values()) {
 			model.setInputQubit(i, line.getInput());
 			i++;
 		}
@@ -147,7 +147,7 @@ public class VisualCircuit implements Viewable, Rendereable {
 
 	public void addQubit() {
 		model.addQubit(false);
-		lines.put(y, new QubitFlowLine(new Vector2D(x, y), new Vector2D(x, y)));
+		lines.put(y, new QubitWire(new Vector2D(x, y), new Vector2D(x, y)));
 		y += lineDistance;
 		view.repaint();
 		changeListeners.fire();
@@ -166,7 +166,7 @@ public class VisualCircuit implements Viewable, Rendereable {
 	public void render(Graphics2D g2d, Dimension canvasSize) {
 		g2d.setStroke(new BasicStroke(2));
 		
-		for (QubitFlowLine line : lines.values()) {
+		for (QubitWire line : lines.values()) {
 			line.setEnd(new Vector2D(canvasSize.getWidth() - x, line.getEnd().getY()));
 			line.render(g2d, canvasSize);
 		}
@@ -185,7 +185,7 @@ public class VisualCircuit implements Viewable, Rendereable {
 		return view;
 	}
 
-	public void select(VisualGate gate) {
+	public void select(QuantumGateView gate) {
 		selectedGate = Optional.of(gate);
 		view.repaint();
 	}

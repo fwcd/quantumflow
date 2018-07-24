@@ -14,14 +14,14 @@ public class CircuitBuilderView implements Viewable {
 	private final JPanel view;
 	
 	private final CircuitToolBar toolBar;
-	private final VisualCircuit circuitBuilder;
+	private final QuantumCircuitView circuitBuilder;
 	private final JTextPane output;
 	
 	public CircuitBuilderView() {
 		view = new JPanel();
 		view.setLayout(new BorderLayout());
 		
-		circuitBuilder = new VisualCircuit();
+		circuitBuilder = new QuantumCircuitView();
 		circuitBuilder.addListener(this::onChange);
 		view.add(circuitBuilder.getView(), BorderLayout.CENTER);
 		

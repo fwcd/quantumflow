@@ -12,13 +12,12 @@ import com.fwcd.fructose.geometry.Vector2D;
 import com.fwcd.quantum.gates.QuantumGate;
 import com.fwcd.quantum.gates.QuantumGateVisitor;
 import com.fwcd.quantum.gates.binary.CNOTGate;
-import com.fwcd.quantum.gates.binary.SqrtSwapGate;
 import com.fwcd.quantum.gates.binary.SwapGate;
-import com.fwcd.quantum.gates.ternary.CCNOTGate;
-import com.fwcd.quantum.gates.ternary.CSwapGate;
+import com.fwcd.quantum.gates.ternary.ToffoliGate;
+import com.fwcd.quantum.gates.ternary.FredkinGate;
 import com.fwcd.quantum.gates.unary.PauliXGate;
 
-public class VisualGateRenderer implements QuantumGateVisitor {
+public class QuantumGateRenderer implements QuantumGateVisitor {
 	private final DrawGraphics g;
 	private final int radius;
 	private final int lineDistance;
@@ -30,7 +29,7 @@ public class VisualGateRenderer implements QuantumGateVisitor {
 	private int width;
 	private int height;
 	
-	public VisualGateRenderer(
+	public QuantumGateRenderer(
 		DrawGraphics g,
 		int width,
 		int height,
@@ -69,17 +68,6 @@ public class VisualGateRenderer implements QuantumGateVisitor {
 	}
 	
 	@Override
-	public void visitSqrtSwap(SqrtSwapGate gate) {
-		drawRotatedCross(topCenter);
-		new LineSeg2D(topCenter, bottomCenter).draw(g);
-		drawRotatedCross(bottomCenter);
-		Circle2D c = new Circle2D(center, radius);
-		c.fillWith(DrawColor.WHITE, g);
-		c.draw(g);
-		g.drawString("1/2", center.getX() - radius + 2, center.getY() + radius - 4);
-	}
-	
-	@Override
 	public void visitSwap(SwapGate gate) {
 		drawRotatedCross(topCenter);
 		new LineSeg2D(topCenter, bottomCenter).draw(g);
@@ -87,7 +75,7 @@ public class VisualGateRenderer implements QuantumGateVisitor {
 	}
 	
 	@Override
-	public void visitCCNOT(CCNOTGate gate) {
+	public void visitToffoli(ToffoliGate gate) {
 		new Circle2D(topCenter, radius).fill(g);
 		new Circle2D(center, radius).fill(g);
 		new LineSeg2D(topCenter, bottomCenter).draw(g);
@@ -96,7 +84,7 @@ public class VisualGateRenderer implements QuantumGateVisitor {
 	}
 	
 	@Override
-	public void visitCSwap(CSwapGate gate) {
+	public void visitFredkin(FredkinGate gate) {
 		new Circle2D(topCenter, radius).fill(g);
 		drawRotatedCross(center);
 		new LineSeg2D(topCenter, bottomCenter).draw(g);

@@ -15,13 +15,13 @@ import com.fwcd.fructose.swing.SwingGraphics;
  * @author Fredrik
  *
  */
-public class VisualBit implements Rendereable {
+public class BitView implements Rendereable {
 	private final boolean editable;
 	private boolean state = false;
 	private boolean showState = true;
 	private Circle2D frame;
 	
-	public VisualBit(boolean editable, Vector2D pos) {
+	public BitView(boolean editable, Vector2D pos) {
 		this.editable = editable;
 		frame = new Circle2D(pos, 15);
 	}

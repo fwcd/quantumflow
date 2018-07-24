@@ -10,19 +10,19 @@ import com.fwcd.fructose.geometry.Vector2D;
 import com.fwcd.fructose.swing.Rendereable;
 import com.fwcd.fructose.swing.SwingGraphics;
 
-public class QubitFlowLine implements Rendereable {
-	private final VisualBit inBit;
-	private final VisualBit outBit;
+public class QubitWire implements Rendereable {
+	private final BitView inBit;
+	private final BitView outBit;
 	private Vector2D startPos;
 	private Vector2D endPos;
 	
-	private List<VisualGate> gates = new ArrayList<>();
+	private List<QuantumGateView> gates = new ArrayList<>();
 	
-	public QubitFlowLine(Vector2D startPos, Vector2D endPos) {
+	public QubitWire(Vector2D startPos, Vector2D endPos) {
 		this.startPos = startPos;
 		this.endPos = endPos;
-		inBit = new VisualBit(true, startPos);
-		outBit = new VisualBit(false, endPos);
+		inBit = new BitView(true, startPos);
+		outBit = new BitView(false, endPos);
 	}
 
 	@Override
@@ -33,7 +33,7 @@ public class QubitFlowLine implements Rendereable {
 		inBit.render(g2d, canvasSize);
 		outBit.render(g2d, canvasSize);
 		
-		for (VisualGate gate : gates) {
+		for (QuantumGateView gate : gates) {
 			gate.render(g2d, canvasSize);
 		}
 	}
@@ -61,7 +61,7 @@ public class QubitFlowLine implements Rendereable {
 		outBit.moveTo(endPos);
 	}
 
-	public void addGate(VisualGate gate, Vector2D offset) {
+	public void addGate(QuantumGateView gate, Vector2D offset) {
 		gates.add(gate.withPos(startPos.add(offset)));
 	}
 

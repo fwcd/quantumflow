@@ -13,7 +13,7 @@ import com.fwcd.fructose.swing.SwingGraphics;
 import com.fwcd.quantum.gates.MatrixGate;
 import com.fwcd.quantum.gates.QuantumGate;
 
-public class VisualGate implements Rendereable {
+public class QuantumGateView implements Rendereable {
 	private final QuantumGate gate;
 	private final int lineDistance;
 	private Vector2D pos;
@@ -26,7 +26,7 @@ public class VisualGate implements Rendereable {
 	 * @param pos - A position on the qubit flow line
 	 * @param lineDistance - The y-distance between two qubit flow lines
 	 */
-	public VisualGate(QuantumGate gate, Vector2D pos, int lineDistance) {
+	public QuantumGateView(QuantumGate gate, Vector2D pos, int lineDistance) {
 		this.gate = gate;
 		this.pos = pos;
 		this.lineDistance = lineDistance;
@@ -34,8 +34,8 @@ public class VisualGate implements Rendereable {
 		render(new VoidGraphics());
 	}
 	
-	public VisualGate withPos(Vector2D pos) {
-		return new VisualGate(gate, pos, lineDistance);
+	public QuantumGateView withPos(Vector2D pos) {
+		return new QuantumGateView(gate, pos, lineDistance);
 	}
 	
 	public void moveTo(Vector2D pos) {
@@ -56,14 +56,12 @@ public class VisualGate implements Rendereable {
 		int height = lineDistance;
 		int radius = 10;
 		
-		if (gate instanceof MatrixGate) {
-			int minQubits = ((MatrixGate) gate).minQubits();
-			if (minQubits > 1) {
-				height += (minQubits - 2) * lineDistance;
-			}
+		int qubitCount = ((MatrixGate) gate).qubitCount();
+		if (qubitCount > 1) {
+			height += (qubitCount - 2) * lineDistance;
 		}
 		
-		VisualGateRenderer drawer = new VisualGateRenderer(g, width, height, radius, lineDistance, pos);
+		QuantumGateRenderer drawer = new QuantumGateRenderer(g, width, height, radius, lineDistance, pos);
 		gate.accept(drawer);
 		boundingBox = drawer.getBoundingBox();
 	}

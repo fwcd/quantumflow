@@ -15,10 +15,9 @@ import javax.swing.JToolBar;
 import com.fwcd.fructose.geometry.Vector2D;
 import com.fwcd.quantum.gates.QuantumGate;
 import com.fwcd.quantum.gates.binary.CNOTGate;
-import com.fwcd.quantum.gates.binary.SqrtSwapGate;
 import com.fwcd.quantum.gates.binary.SwapGate;
-import com.fwcd.quantum.gates.ternary.CCNOTGate;
-import com.fwcd.quantum.gates.ternary.CSwapGate;
+import com.fwcd.quantum.gates.ternary.ToffoliGate;
+import com.fwcd.quantum.gates.ternary.FredkinGate;
 import com.fwcd.quantum.gates.unary.HadamardGate;
 import com.fwcd.quantum.gates.unary.PauliXGate;
 import com.fwcd.quantum.gates.unary.PauliYGate;
@@ -34,7 +33,7 @@ public class CircuitToolBar implements Viewable {
 	private final int padding = 10;
 	private JToolBar toolBar;
 	
-	public CircuitToolBar(VisualCircuit builder) {
+	public CircuitToolBar(QuantumCircuitView builder) {
 		view = new JPanel();
 		view.setLayout(new BorderLayout());
 		toolBar = new JToolBar();
@@ -62,12 +61,11 @@ public class CircuitToolBar implements Viewable {
 		JPanel binaryGates = gatePanel("Binary gates");
 		binaryGates.add(gateButton(builder, new CNOTGate()));
 		binaryGates.add(gateButton(builder, new SwapGate()));
-		binaryGates.add(gateButton(builder, new SqrtSwapGate()));
 		toolBar.add(binaryGates);
 		
 		JPanel ternaryGates = gatePanel("Ternary gates");
-		ternaryGates.add(gateButton(builder, new CCNOTGate()));
-		ternaryGates.add(gateButton(builder, new CSwapGate()));
+		ternaryGates.add(gateButton(builder, new ToffoliGate()));
+		ternaryGates.add(gateButton(builder, new FredkinGate()));
 		toolBar.add(ternaryGates);
 		
 		view.add(toolBar, BorderLayout.CENTER);
@@ -86,8 +84,8 @@ public class CircuitToolBar implements Viewable {
 		return panel;
 	}
 
-	private JButton gateButton(VisualCircuit builder, QuantumGate gate) {
-		VisualGate vGate = new VisualGate(gate, new Vector2D(padding, padding), builder.getLineDistance());
+	private JButton gateButton(QuantumCircuitView builder, QuantumGate gate) {
+		QuantumGateView vGate = new QuantumGateView(gate, new Vector2D(padding, padding), builder.getLineDistance());
 //		JButton button = new DrawGraphicsButton(vGate.getSizePlus(padding * 2, padding * 2), vGate);
 		JButton button = new JButton(gate.getClass().getSimpleName());
 		button.addActionListener(l -> builder.select(vGate));
