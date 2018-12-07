@@ -1,6 +1,6 @@
-package com.fwcd.quantumflow;
+package fwcd.quantumflow;
 
-import com.fwcd.quantumflow.core.QuantumFlowApp;
+import fwcd.quantumflow.core.QuantumFlowApp;
 
 public class QuantumFlowMain {
 	public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package com.fwcd.quantumflow.circuitbuilder;
+package fwcd.quantumflow.circuitbuilder;
 
 import java.awt.BasicStroke;
 import java.awt.Dimension;
@@ -13,16 +13,16 @@ import java.util.TreeMap;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
-import com.fwcd.fructose.ListenerList;
-import com.fwcd.fructose.Pair;
-import com.fwcd.fructose.geometry.Vector2D;
-import com.fwcd.quantum.simulator.SimulatedQuantumCircuit;
-import com.fwcd.fructose.swing.RenderPanel;
-import com.fwcd.fructose.swing.Rendereable;
-import com.fwcd.fructose.swing.Viewable;
+import fwcd.fructose.ListenerList;
+import fwcd.fructose.Pair;
+import fwcd.fructose.geometry.Vector2D;
+import fwcd.quantum.simulator.SimulatedQuantumCircuit;
+import fwcd.fructose.swing.RenderPanel;
+import fwcd.fructose.swing.Renderable;
+import fwcd.fructose.swing.View;
 
-public class QuantumCircuitView implements Viewable, Rendereable {
-	private final JPanel view;
+public class QuantumCircuitView implements View, Renderable {
+	private final JPanel component;
 	private SimulatedQuantumCircuit model = new SimulatedQuantumCircuit();
 
 	private final int padding = 20;
@@ -41,7 +41,7 @@ public class QuantumCircuitView implements Viewable, Rendereable {
 	private int y = padding;
 	
 	public QuantumCircuitView() {
-		view = new RenderPanel(this);
+		component = new RenderPanel(this);
 		MouseAdapter adapter = new MouseAdapter() {
 			
 			@Override
@@ -61,18 +61,18 @@ public class QuantumCircuitView implements Viewable, Rendereable {
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
 				viewSelectedGate = true;
-				view.repaint();
+				component.repaint();
 			}
 
 			@Override
 			public void mouseExited(MouseEvent arg0) {
 				viewSelectedGate = false;
-				view.repaint();
+				component.repaint();
 			}
 			
 		};
-		view.addMouseListener(adapter);
-		view.addMouseMotionListener(adapter);
+		component.addMouseListener(adapter);
+		component.addMouseMotionListener(adapter);
 		
 		addListener(() -> lines.values().forEach(QubitWireView::hideOutput));
 	}
@@ -82,13 +82,13 @@ public class QuantumCircuitView implements Viewable, Rendereable {
 		for (boolean outBit : model.computeResult().getBits()) {
 			lineIt.next().setOutput(outBit);
 		}
-		view.repaint();
+		component.repaint();
 	}
 	
 	private void onMouseMove(Vector2D pos) {
 		lastMousePos = pos;
 		floatingGate.ifPresent(gate -> gate.setFloatingPos(pos));
-		view.repaint();
+		component.repaint();
 	}
 
 	private Pair<Integer, QubitWireView> nearestLine() {
@@ -140,7 +140,7 @@ public class QuantumCircuitView implements Viewable, Rendereable {
 		if (changedInput) {
 			updateInput();
 		}
-		view.repaint();
+		component.repaint();
 	}
 	
 	private void updateInput() {
@@ -156,7 +156,7 @@ public class QuantumCircuitView implements Viewable, Rendereable {
 		model.addQubit(false);
 		lines.put(y, new QubitWireView(new Vector2D(x, y), new Vector2D(x, y)));
 		y += lineDistance;
-		view.repaint();
+		component.repaint();
 		changeListeners.fire();
 	}
 	
@@ -165,7 +165,7 @@ public class QuantumCircuitView implements Viewable, Rendereable {
 		offset = initialOffset;
 		lines.clear();
 		y = padding;
-		view.repaint();
+		component.repaint();
 		changeListeners.fire();
 	}
 	
@@ -188,13 +188,13 @@ public class QuantumCircuitView implements Viewable, Rendereable {
 	}
 	
 	@Override
-	public JComponent getView() {
-		return view;
+	public JComponent getComponent() {
+		return component;
 	}
 
 	public void select(QuantumGateView gate) {
 		floatingGate = Optional.of(gate);
-		view.repaint();
+		component.repaint();
 	}
 
 	public int getLineDistance() {

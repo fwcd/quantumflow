@@ -3,7 +3,7 @@ plugins {
     id 'application'
 }
 
-mainClassName = 'com.fwcd.quantumflow.QuantumFlowMain'
+mainClassName = 'fwcd.quantumflow.QuantumFlowMain'
 
 repositories {
     jcenter()

@@ -1,4 +1,4 @@
-package com.fwcd.quantumflow.circuitbuilder;
+package fwcd.quantumflow.circuitbuilder;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -8,29 +8,29 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 
-import com.fwcd.fructose.swing.Viewable;
+import fwcd.fructose.swing.View;
 
-public class CircuitBuilderView implements Viewable {
-	private final JPanel view;
+public class CircuitBuilderView implements View {
+	private final JPanel component;
 	
 	private final CircuitToolBar toolBar;
 	private final QuantumCircuitView circuit;
 	private final JTextPane output;
 	
 	public CircuitBuilderView() {
-		view = new JPanel();
-		view.setLayout(new BorderLayout());
+		component = new JPanel();
+		component.setLayout(new BorderLayout());
 		
 		circuit = new QuantumCircuitView();
 		circuit.addListener(this::onChange);
-		view.add(circuit.getView(), BorderLayout.CENTER);
+		component.add(circuit.getComponent(), BorderLayout.CENTER);
 		
 		toolBar = new CircuitToolBar(circuit);
-		view.add(toolBar.getView(), BorderLayout.SOUTH);
+		component.add(toolBar.getComponent(), BorderLayout.SOUTH);
 		
 		output = new JTextPane();
 		output.setPreferredSize(new Dimension(180, 180));
-		view.add(new JScrollPane(output), BorderLayout.EAST);
+		component.add(new JScrollPane(output), BorderLayout.EAST);
 		
 		onChange();
 	}
@@ -41,7 +41,7 @@ public class CircuitBuilderView implements Viewable {
 	}
 
 	@Override
-	public JComponent getView() {
-		return view;
+	public JComponent getComponent() {
+		return component;
 	}
 }

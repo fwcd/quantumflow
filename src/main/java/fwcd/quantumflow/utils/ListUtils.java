@@ -1,4 +1,4 @@
-package com.fwcd.quantumflow.utils;
+package fwcd.quantumflow.utils;
 
 import java.util.List;
 import java.util.Optional;

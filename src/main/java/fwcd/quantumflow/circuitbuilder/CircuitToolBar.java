@@ -1,4 +1,4 @@
-package com.fwcd.quantumflow.circuitbuilder;
+package fwcd.quantumflow.circuitbuilder;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -12,30 +12,29 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
 
-import com.fwcd.fructose.geometry.Vector2D;
-import com.fwcd.quantum.gates.QuantumGate;
-import com.fwcd.quantum.gates.binary.CNOTGate;
-import com.fwcd.quantum.gates.binary.SwapGate;
-import com.fwcd.quantum.gates.ternary.ToffoliGate;
-import com.fwcd.quantum.gates.ternary.FredkinGate;
-import com.fwcd.quantum.gates.unary.HadamardGate;
-import com.fwcd.quantum.gates.unary.PauliXGate;
-import com.fwcd.quantum.gates.unary.PauliYGate;
-import com.fwcd.quantum.gates.unary.PauliZGate;
-import com.fwcd.quantum.gates.unary.SqrtNOTGate;
-import com.fwcd.fructose.swing.Viewable;
+import fwcd.fructose.swing.View;
+import fwcd.quantum.gates.QuantumGate;
+import fwcd.quantum.gates.binary.CNOTGate;
+import fwcd.quantum.gates.binary.SwapGate;
+import fwcd.quantum.gates.ternary.FredkinGate;
+import fwcd.quantum.gates.ternary.ToffoliGate;
+import fwcd.quantum.gates.unary.HadamardGate;
+import fwcd.quantum.gates.unary.PauliXGate;
+import fwcd.quantum.gates.unary.PauliYGate;
+import fwcd.quantum.gates.unary.PauliZGate;
+import fwcd.quantum.gates.unary.SqrtNOTGate;
 
-public class CircuitToolBar implements Viewable {
-	private final JPanel view;
+public class CircuitToolBar implements View {
+	private final JPanel component;
 	private JButton addQubitButton;
 	private JButton clearButton;
-	
+
 	private final int padding = 10;
 	private JToolBar toolBar;
-	
+
 	public CircuitToolBar(QuantumCircuitView builder) {
-		view = new JPanel();
-		view.setLayout(new BorderLayout());
+		component = new JPanel();
+		component.setLayout(new BorderLayout());
 		toolBar = new JToolBar();
 		toolBar.setFloatable(false);
 		
@@ -70,12 +69,12 @@ public class CircuitToolBar implements Viewable {
 		ternaryGates.add(gateButton(builder, new FredkinGate()));
 		toolBar.add(ternaryGates);
 		
-		view.add(toolBar, BorderLayout.CENTER);
+		component.add(toolBar, BorderLayout.CENTER);
 		
 		JButton computeButton = new JButton(" Compute result ");
 		computeButton.addActionListener(l -> builder.calculateResult());
 		computeButton.setFont(new Font("Default", Font.PLAIN, 24));
-		view.add(computeButton, BorderLayout.EAST);
+		component.add(computeButton, BorderLayout.EAST);
 	}
 	
 	private JPanel gatePanel(String string) {
@@ -93,7 +92,7 @@ public class CircuitToolBar implements Viewable {
 	}
 	
 	@Override
-	public JComponent getView() {
-		return view;
+	public JComponent getComponent() {
+		return component;
 	}
 }

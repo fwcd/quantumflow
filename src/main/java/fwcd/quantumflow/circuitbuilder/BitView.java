@@ -1,13 +1,13 @@
-package com.fwcd.quantumflow.circuitbuilder;
+package fwcd.quantumflow.circuitbuilder;
 
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 
-import com.fwcd.fructose.draw.DrawColor;
-import com.fwcd.fructose.geometry.Circle2D;
-import com.fwcd.fructose.geometry.Vector2D;
-import com.fwcd.fructose.swing.Rendereable;
-import com.fwcd.fructose.swing.SwingGraphics;
+import fwcd.fructose.draw.DrawColor;
+import fwcd.fructose.geometry.Circle2D;
+import fwcd.fructose.geometry.Vector2D;
+import fwcd.fructose.swing.Renderable;
+import fwcd.fructose.swing.SwingGraphics;
 
 /**
  * Represents a visual, determined (qu)bit.
@@ -15,7 +15,7 @@ import com.fwcd.fructose.swing.SwingGraphics;
  * @author Fredrik
  *
  */
-public class BitView implements Rendereable {
+public class BitView implements Renderable {
 	private final boolean editable;
 	private boolean state = false;
 	private boolean showState = true;

@@ -1,16 +1,16 @@
-package com.fwcd.quantumflow.circuitbuilder;
+package fwcd.quantumflow.circuitbuilder;
 
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fwcd.fructose.geometry.LineSeg2D;
-import com.fwcd.fructose.geometry.Vector2D;
-import com.fwcd.fructose.swing.Rendereable;
-import com.fwcd.fructose.swing.SwingGraphics;
+import fwcd.fructose.geometry.LineSeg2D;
+import fwcd.fructose.geometry.Vector2D;
+import fwcd.fructose.swing.Renderable;
+import fwcd.fructose.swing.SwingGraphics;
 
-public class QubitWireView implements Rendereable {
+public class QubitWireView implements Renderable {
 	private final BitView inBit;
 	private final BitView outBit;
 	private Vector2D startPos;

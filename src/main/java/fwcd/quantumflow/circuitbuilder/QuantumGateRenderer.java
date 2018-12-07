@@ -1,24 +1,24 @@
-package com.fwcd.quantumflow.circuitbuilder;
+package fwcd.quantumflow.circuitbuilder;
 
-import static com.fwcd.quantumflow.utils.ListUtils.listGet;
+import static fwcd.quantumflow.utils.ListUtils.listGet;
 
 import java.util.List;
 import java.util.Optional;
 
-import com.fwcd.fructose.NonNull;
-import com.fwcd.fructose.draw.DrawColor;
-import com.fwcd.fructose.draw.DrawGraphics;
-import com.fwcd.fructose.geometry.Circle2D;
-import com.fwcd.fructose.geometry.LineSeg2D;
-import com.fwcd.fructose.geometry.Rectangle2D;
-import com.fwcd.fructose.geometry.Vector2D;
-import com.fwcd.quantum.gates.QuantumGate;
-import com.fwcd.quantum.gates.QuantumGateVisitor;
-import com.fwcd.quantum.gates.binary.CNOTGate;
-import com.fwcd.quantum.gates.binary.SwapGate;
-import com.fwcd.quantum.gates.ternary.ToffoliGate;
-import com.fwcd.quantum.gates.ternary.FredkinGate;
-import com.fwcd.quantum.gates.unary.PauliXGate;
+import fwcd.fructose.Option;
+import fwcd.fructose.draw.DrawColor;
+import fwcd.fructose.draw.DrawGraphics;
+import fwcd.fructose.geometry.Circle2D;
+import fwcd.fructose.geometry.LineSeg2D;
+import fwcd.fructose.geometry.Rectangle2D;
+import fwcd.fructose.geometry.Vector2D;
+import fwcd.quantum.gates.QuantumGate;
+import fwcd.quantum.gates.QuantumGateVisitor;
+import fwcd.quantum.gates.binary.CNOTGate;
+import fwcd.quantum.gates.binary.SwapGate;
+import fwcd.quantum.gates.ternary.FredkinGate;
+import fwcd.quantum.gates.ternary.ToffoliGate;
+import fwcd.quantum.gates.unary.PauliXGate;
 
 public class QuantumGateRenderer implements QuantumGateVisitor {
 	private final int padding = 5;
@@ -119,7 +119,7 @@ public class QuantumGateRenderer implements QuantumGateVisitor {
 		g.drawString(s, firstPos.getX() + padding, firstPos.getY() + padding, 18);
 	}
 	
-	public NonNull<Rectangle2D> getBoundingBox() {
-		return NonNull.of(boundingBox.orElseGet(() -> new Rectangle2D(firstPos, width + padding, height + padding)));
+	public Option<Rectangle2D> getBoundingBox() {
+		return Option.of(boundingBox.orElseGet(() -> new Rectangle2D(firstPos, width + padding, height + padding)));
 	}
 }

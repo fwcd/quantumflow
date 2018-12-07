@@ -1,4 +1,4 @@
-package com.fwcd.quantumflow.circuitbuilder;
+package fwcd.quantumflow.circuitbuilder;
 
 import java.awt.Dimension;
 import java.awt.Graphics2D;
@@ -6,17 +6,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import com.fwcd.fructose.NonNull;
-import com.fwcd.fructose.draw.DrawGraphics;
-import com.fwcd.fructose.draw.VoidGraphics;
-import com.fwcd.fructose.geometry.Rectangle2D;
-import com.fwcd.fructose.geometry.Vector2D;
-import com.fwcd.fructose.structs.IntList;
-import com.fwcd.fructose.swing.Rendereable;
-import com.fwcd.fructose.swing.SwingGraphics;
-import com.fwcd.quantum.gates.QuantumGate;
+import fwcd.fructose.Option;
+import fwcd.fructose.draw.DrawGraphics;
+import fwcd.fructose.draw.VoidGraphics;
+import fwcd.fructose.geometry.Rectangle2D;
+import fwcd.fructose.geometry.Vector2D;
+import fwcd.fructose.structs.IntList;
+import fwcd.fructose.swing.Renderable;
+import fwcd.fructose.swing.SwingGraphics;
+import fwcd.quantum.gates.QuantumGate;
 
-public class QuantumGateView implements Rendereable {
+public class QuantumGateView implements Renderable {
 	private final QuantumGate model;
 	private final int lineDistance;
 	private final int qubitCount;
@@ -24,7 +24,7 @@ public class QuantumGateView implements Rendereable {
 	private final IntList indices = new IntList();
 	
 	private Optional<Vector2D> floatingPos = Optional.empty();
-	private NonNull<Rectangle2D> boundingBox = NonNull.empty();
+	private Option<Rectangle2D> boundingBox = Option.empty();
 	
 	/**
 	 * Creates a new quantum gate view.
@@ -88,11 +88,11 @@ public class QuantumGateView implements Rendereable {
 	}
 
 	public Dimension getSize() {
-		return new Dimension((int) boundingBox.get().width(), (int) boundingBox.get().height());
+		return new Dimension((int) boundingBox.unwrap().width(), (int) boundingBox.unwrap().height());
 	}
 	
 	public Dimension getSizePlus(double wDelta, double hDelta) {
-		return new Dimension((int) (boundingBox.get().width() + wDelta), (int) (boundingBox.get().height() + hDelta));
+		return new Dimension((int) (boundingBox.unwrap().width() + wDelta), (int) (boundingBox.unwrap().height() + hDelta));
 	}
 
 	public QuantumGate getModel() {
