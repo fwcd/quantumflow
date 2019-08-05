@@ -19,9 +19,9 @@ import fwcd.fructose.geometry.Vector2D;
 import fwcd.quantum.simulator.SimulatedQuantumCircuit;
 import fwcd.fructose.swing.RenderPanel;
 import fwcd.fructose.swing.Renderable;
-import fwcd.fructose.swing.View;
+import fwcd.fructose.swing.Viewable;
 
-public class QuantumCircuitView implements View, Renderable {
+public class QuantumCircuitView implements Viewable, Renderable {
 	private final JPanel component;
 	private SimulatedQuantumCircuit model = new SimulatedQuantumCircuit();
 

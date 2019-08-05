@@ -8,9 +8,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 
-import fwcd.fructose.swing.View;
+import fwcd.fructose.swing.Viewable;
 
-public class CircuitBuilderView implements View {
+public class CircuitBuilderView implements Viewable {
 	private final JPanel component;
 	
 	private final CircuitToolBar toolBar;

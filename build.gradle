@@ -11,9 +11,8 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.github.fwcd:Fructose:b12e36618dc3d386cde73b25efe45723f88eb859'
-    implementation 'com.github.fwcd:Palm:1cf6a56c840dfc7caa0d12c1b85b47998ba76fbf'
-    implementation 'com.github.fwcd:QuantumCore:ab24bead44e04170fa5de06458e73a56d204b455'
-    implementation 'com.google.guava:guava:23.0'
+    implementation 'com.github.fwcd:fructose:1.0.0'
+    implementation 'com.github.fwcd:palm:1.0.0'
+    implementation 'com.github.fwcd:quantumcore:1.0.0'
     testImplementation 'junit:junit:4.12'
 }

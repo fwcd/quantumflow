@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
 
-import fwcd.fructose.swing.View;
+import fwcd.fructose.swing.Viewable;
 import fwcd.quantum.gates.QuantumGate;
 import fwcd.quantum.gates.binary.CNOTGate;
 import fwcd.quantum.gates.binary.SwapGate;
@@ -24,7 +24,7 @@ import fwcd.quantum.gates.unary.PauliYGate;
 import fwcd.quantum.gates.unary.PauliZGate;
 import fwcd.quantum.gates.unary.SqrtNOTGate;
 
-public class CircuitToolBar implements View {
+public class CircuitToolBar implements Viewable {
 	private final JPanel component;
 	private JButton addQubitButton;
 	private JButton clearButton;
