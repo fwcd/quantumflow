@@ -1,7 +1,7 @@
 # QuantumFlow
 
-[![Build Status](https://travis-ci.org/fwcd/quantumflow.svg?branch=master)](https://travis-ci.org/fwcd/quantumflow)
+[![Build](https://github.com/fwcd/quantumflow/workflows/Build/badge.svg)](https://github.com/fwcd/quantumflow/actions)
 
-A visual quantum circuit builder using [QuantumCore](https://github.com/fwcd/quantumcore).
+A visual quantum circuit builder using [QuantumCore](https://github.com/fwcd/quantumflow).
 
 ![Screenshot](screenshot.jpg)
